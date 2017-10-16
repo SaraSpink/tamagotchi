@@ -78,6 +78,13 @@ var pinky = new _tamagotchi.Tamagotchi("Pinky");
 pinky.setHunger();
 pinky.setTimer();
 pinky.counter = 100;
+// if (pinky.counter === 0 && pinky.foodLevel > 0) {
+//   alert("Don't forget to feed your Flamingo")
+// }
+//
+// if(pinky.foodLevel === 0) {
+//   alert("You're a stone cold killer")
+// }
 
 setInterval(function () {
   $('#status').text(pinky.foodLevel);
