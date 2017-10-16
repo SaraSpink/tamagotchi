@@ -3,13 +3,17 @@ let pinky = new Tamagotchi("Pinky");
 pinky.setHunger();
 pinky.setTimer();
 pinky.counter = 100;
+
 // if (pinky.counter === 0 && pinky.foodLevel > 0) {
 //   alert("Don't forget to feed your Flamingo")
 // }
 //
-// if(pinky.foodLevel === 0) {
-//   alert("You're a stone cold killer")
-// }
+  setInterval(function() {
+    if (pinky.foodLevel === 0) {
+    alert("You're a stone cold killer");
+    }
+
+  });
 
   setInterval(function() {
     $('#status').text(pinky.foodLevel);
@@ -20,6 +24,7 @@ pinky.counter = 100;
     $('#mealForm').submit(function(event) {
     event.preventDefault();
     pinky.counter = 100;
+
     let mealSize = $("input:radio[name=mealSize]:checked").val();
     if (mealSize === "small") {
       pinky.feed(5);
@@ -28,5 +33,9 @@ pinky.counter = 100;
     } else {
       pinky.feed(15);
     }
+
+
+
+
   });
 });

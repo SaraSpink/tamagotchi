@@ -2,7 +2,7 @@ export class Tamagotchi {
   constructor(name) {
     this.name = name;
 
-    this.foodLevel = 10;
+    this.foodLevel = 1;
     this.counter = 100;
     this.timer = 0;
   }
@@ -14,7 +14,13 @@ export class Tamagotchi {
   }
 
   timeCounter() {
-    return --this.counter;
+    if (this.counter > 0) {
+      --this.counter;
+    }
+  }
+
+  stopCounter() {
+    clearInterval(this.timer);
   }
 
   setHunger() {

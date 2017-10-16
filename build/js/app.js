@@ -15,7 +15,7 @@ var Tamagotchi = exports.Tamagotchi = function () {
 
     this.name = name;
 
-    this.foodLevel = 10;
+    this.foodLevel = 1;
     this.counter = 100;
     this.timer = 0;
   }
@@ -30,7 +30,14 @@ var Tamagotchi = exports.Tamagotchi = function () {
   }, {
     key: "timeCounter",
     value: function timeCounter() {
-      return --this.counter;
+      if (this.counter > 0) {
+        --this.counter;
+      }
+    }
+  }, {
+    key: "stopCounter",
+    value: function stopCounter() {
+      clearInterval(this.timer);
     }
   }, {
     key: "setHunger",
@@ -70,21 +77,24 @@ var Tamagotchi = exports.Tamagotchi = function () {
 }();
 
 },{}],2:[function(require,module,exports){
-'use strict';
+"use strict";
 
-var _tamagotchi = require('./../js/tamagotchi.js');
+var _tamagotchi = require("./../js/tamagotchi.js");
 
 var pinky = new _tamagotchi.Tamagotchi("Pinky");
 pinky.setHunger();
 pinky.setTimer();
 pinky.counter = 100;
+
 // if (pinky.counter === 0 && pinky.foodLevel > 0) {
 //   alert("Don't forget to feed your Flamingo")
 // }
 //
-// if(pinky.foodLevel === 0) {
-//   alert("You're a stone cold killer")
-// }
+setInterval(function () {
+  if (pinky.foodLevel === 0) {
+    alert("You're a stone cold killer");
+  }
+});
 
 setInterval(function () {
   $('#status').text(pinky.foodLevel);
@@ -95,6 +105,7 @@ $(document).ready(function () {
   $('#mealForm').submit(function (event) {
     event.preventDefault();
     pinky.counter = 100;
+
     var mealSize = $("input:radio[name=mealSize]:checked").val();
     if (mealSize === "small") {
       pinky.feed(5);
