@@ -14,9 +14,10 @@ var Tamagotchi = exports.Tamagotchi = function () {
     _classCallCheck(this, Tamagotchi);
 
     this.name = name;
+
     this.foodLevel = 10;
+    this.counter = 100;
     this.timer = 0;
-    this.counter = 0;
   }
 
   _createClass(Tamagotchi, [{
@@ -29,7 +30,7 @@ var Tamagotchi = exports.Tamagotchi = function () {
   }, {
     key: "timeCounter",
     value: function timeCounter() {
-      return ++this.counter;
+      return --this.counter;
     }
   }, {
     key: "setHunger",
@@ -76,6 +77,7 @@ var _tamagotchi = require('./../js/tamagotchi.js');
 var pinky = new _tamagotchi.Tamagotchi("Pinky");
 pinky.setHunger();
 pinky.setTimer();
+pinky.counter = 100;
 
 setInterval(function () {
   $('#status').text(pinky.foodLevel);
@@ -85,6 +87,7 @@ setInterval(function () {
 $(document).ready(function () {
   $('#mealForm').submit(function (event) {
     event.preventDefault();
+    pinky.counter = 100;
     var mealSize = $("input:radio[name=mealSize]:checked").val();
     if (mealSize === "small") {
       pinky.feed(5);
