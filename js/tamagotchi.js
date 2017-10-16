@@ -3,18 +3,29 @@ export class Tamagotchi {
     this.name = name;
     this.foodLevel = 10;
     this.timer = 0;
+    this.counter = 0;
   }
 
   hungerCounter() {
     if (this.foodLevel > 0) {
       --this.foodLevel;
+    }
   }
-}
+
+  timeCounter() {
+    return ++this.counter;
+  }
 
   setHunger() {
     this.timer = setInterval(() => {
       this.hungerCounter();
     }, 10000);
+  }
+
+  setTimer() {
+    this.counter = setInterval(() => {
+      this.timeCounter();
+    }, 1000);
   }
 
   didYouDie() {

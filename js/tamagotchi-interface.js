@@ -1,9 +1,11 @@
 import { Tamagotchi } from './../js/tamagotchi.js';
 let pinky = new Tamagotchi("Pinky")
 pinky.setHunger()
+pinky.setTimer()
 
 setInterval(function() {
   $('#status').text(pinky.foodLevel);
+  $('#hunger').text(pinky.counter);
 });
 
   $(document).ready(function() {
@@ -17,7 +19,7 @@ setInterval(function() {
     } else {
       pinky.feed(15)
     }
-  
+
 
     });
 

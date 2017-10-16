@@ -16,6 +16,7 @@ var Tamagotchi = exports.Tamagotchi = function () {
     this.name = name;
     this.foodLevel = 10;
     this.timer = 0;
+    this.counter = 0;
   }
 
   _createClass(Tamagotchi, [{
@@ -26,6 +27,11 @@ var Tamagotchi = exports.Tamagotchi = function () {
       }
     }
   }, {
+    key: "timeCounter",
+    value: function timeCounter() {
+      return ++this.counter;
+    }
+  }, {
     key: "setHunger",
     value: function setHunger() {
       var _this = this;
@@ -33,6 +39,15 @@ var Tamagotchi = exports.Tamagotchi = function () {
       this.timer = setInterval(function () {
         _this.hungerCounter();
       }, 10000);
+    }
+  }, {
+    key: "setTimer",
+    value: function setTimer() {
+      var _this2 = this;
+
+      this.counter = setInterval(function () {
+        _this2.timeCounter();
+      }, 1000);
     }
   }, {
     key: "didYouDie",
@@ -60,9 +75,11 @@ var _tamagotchi = require('./../js/tamagotchi.js');
 
 var pinky = new _tamagotchi.Tamagotchi("Pinky");
 pinky.setHunger();
+pinky.setTimer();
 
 setInterval(function () {
   $('#status').text(pinky.foodLevel);
+  $('#hunger').text(pinky.counter);
 });
 
 $(document).ready(function () {
