@@ -15,6 +15,7 @@ export class Tamagotchi {
       return false;
     } else {
       return true;
+      console.log("test did you die");
     }
   }
 
