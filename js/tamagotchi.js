@@ -2,11 +2,18 @@ export class Tamagotchi {
   constructor(name) {
     this.name = name;
     this.foodLevel = 10;
+    this.timer = 0;
   }
 
+  hungerCounter() {
+    if (this.foodLevel > 0) {
+      --this.foodLevel;
+  }
+}
+
   setHunger() {
-    setInterval(() => {
-      this.foodLevel--;
+    this.timer = setInterval(() => {
+      this.hungerCounter();
     }, 10000);
   }
 
@@ -15,7 +22,6 @@ export class Tamagotchi {
       return false;
     } else {
       return true;
-      console.log("test did you die");
     }
   }
 
