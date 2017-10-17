@@ -19,9 +19,12 @@ export class Tamagotchi {
     }
   }
 
-  stopCounter() {
-    clearInterval(this.timer);
-  }
+  // setHungerTimeout() {
+  //   this.timer = setTimeout(() => {
+  //     this.hungerCounter();
+  //   });
+  // }
+
 
   setHunger() {
     this.timer = setInterval(() => {
@@ -39,7 +42,7 @@ export class Tamagotchi {
     if (this.foodLevel > 0) {
       return false;
     } else {
-      return true;
+      this.clearInterval();
     }
   }
 
